@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from "react";
 
@@ -8,7 +7,7 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts?_limit=8`)
+    fetch(`https://holidayapi.com/v1/holidays?pretty&key=e1da110b-93fe-4412-bc35-7d56c4c2e405&country=IN&year=2021`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(
@@ -32,16 +31,16 @@ function App() {
 
   return (
     <div className="App">
-      <h1>API Posts</h1>
+      <h1>Holidays&Dates</h1>
       {loading && <div>A moment please...</div>}
       {error && (
         <div>{`There is a problem fetching the post data - ${error}`}</div>
       )}
       <ul>
-        {data &&
-          data.map(({ id, title }) => (
-            <li key={id}>
-              <h3>{title}</h3>
+        {data&& 
+        data.holidays.map(({name,date}) => (
+            <li>
+              <p>{name}:{date}</p>
             </li>
           ))}
       </ul>
